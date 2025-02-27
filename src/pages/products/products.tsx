@@ -87,7 +87,7 @@ const Products = () => {
         dataLength={data?.length}
       >
         {data?.map(({ id, slug, category, title, status }, index) => (
-          <TableRow className={"bg-white p-6"} key={id}>
+          <TableRow className={"p-6"} key={id}>
             <TableCell className="font-medium">{index + 1}</TableCell>
             <TableCell className="text-center">{slug}</TableCell>
             <TableCell>{title}</TableCell>

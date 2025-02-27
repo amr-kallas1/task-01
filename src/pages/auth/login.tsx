@@ -43,9 +43,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center relative overflow-hidden">
       <Waves />
-      <div className="bg-white p-8 rounded-lg shadow-lg w-[550px] z-10">
+      <div className="bg-white dark:bg-[#2e2a45] p-8 rounded-lg shadow-lg w-[550px] z-10">
         <div className="flex justify-center mb-6">
           <img
             src={logo}
@@ -54,10 +54,10 @@ const Login = () => {
           />
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-800 mb-2 text-center">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-green-500 mb-2 text-center">
           Welcome Back!
         </h2>
-        <p className="text-sm text-gray-600 text-center mb-6">
+        <p className="text-sm text-gray-600 dark:text-white text-center mb-6">
           Please login to access your patient portal.
         </p>
 

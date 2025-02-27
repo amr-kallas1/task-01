@@ -48,7 +48,7 @@ const RHFTextField: React.FunctionComponent<RHFTextAreadProps> = ({
                   {...field}
                   placeholder={placeholder ? placeholder : undefined}
                 />
-                <Typography className="text-sm font-medium text-red-500 text-start mt-1">
+                <Typography className="text-sm font-medium text-red-500 dark:text-red-500 text-start mt-1">
                   {error?.message}
                 </Typography>
               </div>

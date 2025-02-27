@@ -26,5 +26,5 @@ export type IAddProduct = {
 
 export type IUpdateProduct = IAddProduct & { id: number };
 
-export type IGetProductById = IUpdateProduct;
+export type IGetProductById = IProduct;
 

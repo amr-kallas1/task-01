@@ -34,10 +34,13 @@ const Table = ({
   return (
     <>
       <TableContainer className="overflow-hidden rounded-md">
-        <TableHeader className=" bg-primary text-white">
-          <TableRow className="bg-primary">
+        <TableHeader className="">
+          <TableRow className="bg-primary dark:bg-green-600">
             {columns.map(({ className, title }) => (
-              <TableHead className={cn("text-white", className)} key={title}>
+              <TableHead
+                className={cn("dark:text-white text-white", className)}
+                key={title}
+              >
                 {capitalizeFirstLetter(title)}
               </TableHead>
             ))}
@@ -62,7 +65,7 @@ const Table = ({
         </TableBody>
       </TableContainer>
       {!isLoading && dataLength == 0 && (
-        <div className="bg-white pt-spacing_8xl h-[260px] py-2.5 overflow-hidden relative">
+        <div className=" pt-spacing_8xl h-[260px] py-2.5 overflow-hidden relative">
           <div className="flex items-center justify-center h-full flex-col w-[95%] m-auto p-[30px] rounded-xl shadow-lg">
             <img src="/assets/no-data.svg" alt="" />
 
@@ -71,7 +74,7 @@ const Table = ({
         </div>
       )}
       {isError && (
-        <div className="bg-white flex flex-col items-center pt-spacing_8xl h-[260px] py-2.5 overflow-hidden relative">
+        <div className="flex flex-col items-center pt-spacing_8xl h-[260px] py-2.5 overflow-hidden relative">
           <ShieldX size={150} className="text-Error-600" />
           <Typography variant="subtitle2">
             Something went wrong, Please try again later.
@@ -79,7 +82,7 @@ const Table = ({
         </div>
       )}
       {WithPagination && totalPages != 0 && (
-        <div className="px-2 pb-1 py-spacing_lg border-t-2 w-full rounded-b-radius_xl border-gray-200 bg-white">
+        <div className="px-2 pb-1 py-spacing_lg border-t-2 w-full rounded-b-radius_xl border-gray-200">
           <Pagination
             dataLength={dataLength}
             isLoading={isLoading}

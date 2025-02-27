@@ -1,7 +1,12 @@
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 import React, { Fragment, memo, useEffect, useState } from "react";
-import { Control, Controller, useWatch } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  UseFormSetValue,
+  useWatch,
+} from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { Label } from "../ui/label";
 import { Skeleton } from "../ui/skeleton";
@@ -15,10 +20,12 @@ interface RHFInputFileProps
   isMulti?: boolean;
   type?: string;
   control: Control<any>;
+  setValue: UseFormSetValue<any>;
 }
 
 function RHFInputFile({
   name,
+  setValue,
   label,
   className,
   isLoading,
@@ -33,7 +40,7 @@ function RHFInputFile({
   const watchedValue = useWatch({ control, name });
 
   useEffect(() => {
-    if (id && !isLoading) {
+    if (id && !isLoading && watchedValue != undefined) {
       setFiles([watchedValue]);
     }
   }, [id, isLoading, watchedValue]);
@@ -43,10 +50,13 @@ function RHFInputFile({
       setFiles([...files, ...Array.from(event.target.files)]);
     }
   };
-  console.log(files);
 
-  const handleDeleteImg = (fileToDelete: File) => {
+  const handleDeleteImg = (fileToDelete: File | string) => {
+    console.log(fileToDelete);
     setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToDelete));
+    if (files.length == 1) {
+      setValue(name, undefined);
+    }
   };
 
   return (
@@ -127,7 +137,13 @@ function RHFInputFile({
             <div className="border border-gray-200 rounded-xl p-4 flex flex-wrap gap-3 ">
               {files?.map((file) => (
                 <div
-                  key={file.name}
+                  key={
+                    typeof file === "string"
+                      ? file
+                      : typeof file !== "undefined"
+                      ? file.name
+                      : undefined
+                  }
                   className="flex-1 first:h-80 h-[300px] relative min-w-[300px] first:min-w-full"
                 >
                   <X
@@ -136,9 +152,13 @@ function RHFInputFile({
                   />
                   <img
                     src={
-                      typeof file == "string" ? file : URL.createObjectURL(file)
+                      typeof file === "string"
+                        ? file
+                        : typeof file !== "undefined"
+                        ? URL.createObjectURL(file)
+                        : undefined
                     }
-                    alt={file.name}
+                    alt="Product Image"
                     className="rounded-xl w-full m-auto object-cover first:h-60 h-full"
                   />
                 </div>

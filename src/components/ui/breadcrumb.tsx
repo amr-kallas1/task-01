@@ -23,7 +23,7 @@ const BreadCrumbs: React.FunctionComponent<{ data: BreadCrumbsProps[] }> = ({
         />
       </Link>
 
-      <ChevronLeft className="w-4 text-[#bab5b5]" />
+      <ChevronLeft className="w-4 text-[#bab5b5] dark:text-white" />
       {data.map(({ link, label }, index) => {
         return (
           <div className="flex h-7 gap-2 items-center" key={index}>
@@ -35,7 +35,7 @@ const BreadCrumbs: React.FunctionComponent<{ data: BreadCrumbsProps[] }> = ({
                 <Button
                   className={`shadow-none border-none rounded-md py-1 px-2 font-medium ${
                     index + 1 === data.length && "font-semibold"
-                  } text-gray-700 flex items-center justify-center  leading-5 text-sm`}
+                  } text-gray-700 dark:text-white flex items-center justify-center  leading-5 text-sm`}
                   variant={"cadetblue"}
                 >
                   {capitalizeAllFirstLetter(label)}
@@ -45,7 +45,7 @@ const BreadCrumbs: React.FunctionComponent<{ data: BreadCrumbsProps[] }> = ({
               <Typography
                 className={`shadow-none border-none rounded-md py-1 px-2 font-medium ${
                   index + 1 === data.length && "bg-gray-50 font-semibold"
-                } text-gray-700 flex items-center justify-center  leading-5 text-sm`}
+                } text-gray-700 dark:text-white flex items-center justify-center  leading-5 text-sm`}
               >
                 {capitalizeAllFirstLetter(label)}
               </Typography>

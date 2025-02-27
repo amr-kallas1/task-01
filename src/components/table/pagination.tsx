@@ -54,7 +54,7 @@ const Pagination: React.FunctionComponent<PaginationProps> = ({
       <PaginationContent>
         <div className="grow">
           <PaginationPrevious
-            className="text-black bg-white py-2 px-3 mt-2 shadow-xs border border-gray-300 rounded-md max-w-fit"
+            className="text-black dark:text-white bg-white dark:bg-green-500 py-2 px-3 mt-2 shadow-xs border border-gray-300 rounded-md max-w-fit"
             disabled={!isTherePreviousPages}
             onClick={changePaginationHandler.bind(
               null,
@@ -68,8 +68,9 @@ const Pagination: React.FunctionComponent<PaginationProps> = ({
             // variant="ghost"
             onClick={changePaginationHandler.bind(null, 0)}
             className={cn(
-              "text-gray-600 text-sm py-[10px] px-4 bg-white",
-              currentPage === 0 && "bg-primary text-white text-sm"
+              "text-gray-600 dark:bg-inherit dark:hover:bg-green-500 bg-white dark:text-white text-sm py-[10px] px-4",
+              currentPage === 0 &&
+                "bg-primary dark:bg-green-500 text-white text-sm"
             )}
           >
             {1}
@@ -123,9 +124,9 @@ const Pagination: React.FunctionComponent<PaginationProps> = ({
                       paginationValue
                     )}
                     className={cn(
-                      "text-gray-600 text-sm py-[10px] px-4 bg-white",
+                      "text-gray-600 text-sm py-[10px] px-4 bg-white dark:bg-inherit dark:hover:bg-green-500",
                       currentPage === paginationValue &&
-                        "bg-primary text-white text-sm"
+                        "bg-primary dark:bg-green-500 text-white text-sm"
                     )}
                   >
                     {paginationValue + 1}
@@ -145,9 +146,9 @@ const Pagination: React.FunctionComponent<PaginationProps> = ({
             <Button
               onClick={changePaginationHandler.bind(null, pagesCount - 1)}
               className={cn(
-                "text-gray-600 text-sm py-[10px] bg-white px-4",
+                "text-gray-600 text-sm py-[10px] bg-white dark:bg-inherit dark:hover:bg-green-500 px-4",
                 currentPage === pagesCount - 1 &&
-                  "text-sm bg-primary text-white"
+                  "text-sm bg-primary dark:bg-green-500 text-white"
               )}
             >
               {pagesCount}
@@ -156,7 +157,7 @@ const Pagination: React.FunctionComponent<PaginationProps> = ({
         )}
         <div className="grow flex justify-end">
           <PaginationNext
-            className="text-black bg-white py-2 px-3 mt-2 shadow-xs border border-gray-300 rounded-md max-w-fit"
+            className="text-black bg-white dark:bg-green-500 dark:text-white py-2 px-3 mt-2 shadow-xs border border-gray-300 rounded-md max-w-fit"
             disabled={!isThereNextPages}
             onClick={changePaginationHandler.bind(null, currentPage + 1)}
           />

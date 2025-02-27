@@ -67,7 +67,7 @@ const DeleteDialog = ({
         >
           <Trash2 size={16} />
         </div>
-        <DialogTitle className=" text-gray-700 md:text-[20px] text-center mt-20 w-full">
+        <DialogTitle className=" text-gray-700 dark:text-green-500 md:text-[20px] text-center mt-20 w-full">
           Are you sure you want to delete
         </DialogTitle>
 

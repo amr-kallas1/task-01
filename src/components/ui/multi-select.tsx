@@ -18,19 +18,19 @@ interface MultiSelectProps {
 
 const controlStyles = {
   base: cn(
-    "h-full items-start!  rounded-lg bg-white hover:cursor-pointer px-[14px] py-[10px] "
+    "h-full items-start! rounded-lg hover:cursor-pointer px-[14px] py-[10px] "
   ),
   focus: "border-brand-400",
   nonFocus: " border-gray-300 ",
 };
-const placeholderStyles = "text-gray-500 ";
+const placeholderStyles = "text-gray-500 dark:text-white";
 const selectInputStyles = "";
 const valueContainerStyles = "gap-2 flex";
-const singleValueStyles = "  text-gray-700 font-medium";
+const singleValueStyles = "  text-gray-700 dark:text-white font-medium";
 const multiValueStyles =
-  "flex items-center rounded-sm px-1 py-0.5 border border-gray-300 text-gray-700 h-6 text-sm font-md ";
+  "flex items-center rounded-sm px-1 py-0.5 border border-gray-300 text-gray-700 dark:text-white h-6 text-sm font-md ";
 const multiValueLabelStyles =
-  "leading-6 mr-2 bg-brad-400 text-gray-700 text-sm font-sm";
+  "leading-6 mr-2 bg-brad-400 text-gray-700 dark:text-white dark:bg-[#2a1c4d] text-sm font-sm";
 const multiValueRemoveStyles = "";
 const indicatorsContainerStyles = "hidden";
 const clearIndicatorStyles =
@@ -38,11 +38,11 @@ const clearIndicatorStyles =
 const indicatorSeparatorStyles = "bg-transparent";
 const dropdownIndicatorStyles = "hidden!";
 const menuStyles =
-  "p-1 mt-2 border border-gray-200 bg-white rounded-lg shadow-md z-9999!";
+  "p-1 mt-2 border border-gray-200 rounded-lg dark:bg-[#2a1c4d] bg-white shadow-md z-9999!";
 const groupHeadingStyles = "ml-3 mt-2 mb-1 text-gray-500 text-sm!";
 const optionStyles = {
   base: "hover:cursor-pointer px-3 py-2 rounded-sm ",
-  focus: "bg-gray-100 active:bg-gray-200 ",
+  focus: "bg-gray-100 dark:bg-green-300 dark:active:bg-green-500 active:bg-gray-200 ",
   selected: "after:content-['✔'] after:ml-2 after:text-gray-400 text-gray-500!",
 };
 const noOptionsMessageStyles =

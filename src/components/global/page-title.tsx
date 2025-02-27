@@ -15,14 +15,18 @@ interface PageTitleProps {
 const PageTitle: FC<PageTitleProps> = ({ title, subTitle, isLoading }) => {
   return (
     <div className="flex flex-col gap-1  mb-5  overflow-y-hidden">
-      <Typography className="text-gray-950 " variant="h5" size="semibold">
+      <Typography
+        className="text-gray-950 dark:text-green-500"
+        variant="h5"
+        size="semibold"
+      >
         {capitalizeAllFirstLetter(title)}
       </Typography>
       {isLoading && <Skeleton className="h-6" />}
       {!isLoading && (
         <div>
           <Typography
-            className="text-gray-500 font-[460] leading-6 "
+            className="text-gray-500 dark:text-white font-[460] leading-6 "
             variant="body1"
             size="semibold"
           >

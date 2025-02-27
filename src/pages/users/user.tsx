@@ -39,7 +39,7 @@ const User = () => {
       >
         {data?.map(
           ({ id, firstname, lastname, phone, birthDate, login }, index) => (
-            <TableRow className={"bg-white p-6 "} key={id}>
+            <TableRow className={"p-6 "} key={id}>
               <TableCell className="font-medium ">{index + 1}</TableCell>
               <TableCell>{login.username}</TableCell>
               <TableCell>{firstname} </TableCell>

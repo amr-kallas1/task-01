@@ -40,18 +40,19 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: "",
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default:
+          "bg-primary dark:bg-green-500 dark:text-white  text-white hover:bg-primary/90 dark:hover:bg-green-500/90",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-background dark:bg-inherit hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-green-500 text-white hover:bg-green-500/90",
         ghost: "bg-[#a9a9a9] text-white",
         link: "text-primary underline-offset-4 hover:underline",
         yellow: "text-white bg-yellow-400",
         cadetblue: "bg-cadetBlue text-white",
         danger: "text-white bg-red-500",
-        add: "bg-primary text-sm font-semibold text-primary-foreground border-2 px-3 rounded-sm border-main rounded-lg hover:bg-white hover:text-primary ",
+        add: "bg-primary text-white dark:bg-green-500  text-sm font-semibold  border-2 px-3 rounded-sm border-main rounded-lg hover:bg-white hover:text-primary dark:hover:bg-green-500 ",
       },
       size: {
         default: "h-10 px-4 py-2",

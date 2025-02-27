@@ -46,7 +46,7 @@ const RHFTextField: React.FunctionComponent<RHFTextFieldProps> = ({
   };
   return (
     <div className={cn(" w-full px-5 py-2", className)}>
-      <RHFInputLabel label={label} isOptional={isOptional} name={name} />
+      <RHFInputLabel label={label} isOptional={isOptional} />
       {isLoading && <Skeleton className="h-[44px]" />}
       {!isLoading && (
         <Controller

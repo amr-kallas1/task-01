@@ -61,7 +61,7 @@ const Input = React.memo(
                 )
               }
               className={cn(
-                "w-full h-[2.75rem] leading-6 grow text-gray-900 border-input focus:outline-hidden bg-transparent  text-md placeholder:text-gray-500 placeholder:font-regular transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:opacity-50 flex py-[0.625rem] px-[0.875rem] items-center gap-2 rounded-md ",
+                "w-full h-[2.75rem] leading-6 grow text-gray-900 border-input focus:outline-hidden bg-transparent dark:text-white text-md placeholder:text-gray-500 dark:placeholder:text-white placeholder:font-regular transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:opacity-50 flex py-[0.625rem] px-[0.875rem] items-center gap-2 rounded-md ",
                 className,
                 startAdornment && " pl-0"
               )}
@@ -80,7 +80,7 @@ const Input = React.memo(
             )}
           </div>
           {error && (
-            <Typography className="text-red-500 text-sm mt-1 ">
+            <Typography className="text-red-500 dark:text-red-500 text-sm mt-1 ">
               {error}
             </Typography>
           )}

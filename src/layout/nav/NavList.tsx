@@ -35,10 +35,10 @@ const NavList: React.FunctionComponent<{
           <Typography
             variant="h6"
             size="medium"
-            className={`ml-2 ${
+            className={`ml-2 dark:text-white ${
               openSidebar
-                ? "opacity-100 delay-300"
-                : "opacity-0 fixed top-[-1000px] delay-0"
+                ? "opacity-100 "
+                : "opacity-0 fixed top-[-1000px]"
             } transition-all duration-300 `}
           >
             Admin Dashboard

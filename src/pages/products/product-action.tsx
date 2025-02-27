@@ -32,7 +32,7 @@ const ProductAction = () => {
   const { data: productDetails, isLoading } = queries.GetProduct(id);
   const { mutate, isPending } = queries.ProductAction(id);
 
-  const { handleSubmit, control, reset } = useForm<IActionProduct>({
+  const { handleSubmit, control, reset,setValue } = useForm<IActionProduct>({
     resolver: yupResolver(
       productValidation
     ) as unknown as Resolver<IActionProduct>,
@@ -56,8 +56,8 @@ const ProductAction = () => {
       onSuccess: () => {
         toast.success(
           id
-            ? "the product has been added successfully"
-            : "the product has been edited successfully"
+            ? "the product has been edited successfully"
+            : "the product has been added successfully"
         );
         queryClient.invalidateQueries({ queryKey: keys.getAllProduct._def });
         queryClient.invalidateQueries({ queryKey: keys.getProduct._def });
@@ -95,7 +95,7 @@ const ProductAction = () => {
         <div
           className={`w-full ${
             !openSidebar ? "max-w-[1175px]" : "max-w-[943px]"
-          }  py-6 border border-solid  rounded-md gap-4 flex flex-col bg-white`}
+          }  py-6 border border-solid  rounded-md gap-4 flex flex-col`}
         >
           <RHFTextField
             isLoading={isLoading}
@@ -147,6 +147,7 @@ const ProductAction = () => {
           <RHFInputFile
             control={control}
             name="image"
+            setValue={setValue}
             isMulti
             isLoading={isLoading}
             label="Image"

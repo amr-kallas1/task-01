@@ -22,11 +22,11 @@ const RHFInputLabel: React.FunctionComponent<RHFInputLabel> = ({
   return (
     <div className={cn("flex justify-between mb-[6px]", className)}>
       <div className="flex items-center  gap-0.5">
-        <Label className="text-gray-700  inline-block">
+        <Label className="text-gray-700 dark:text-white inline-block">
           {capitalizeFirstLetter(label)}
         </Label>
         {isOptional && (
-          <Typography className="text-gray-400" size="medium">
+          <Typography className="text-gray-400 dark:text-white" size="medium">
             Optional
           </Typography>
         )}

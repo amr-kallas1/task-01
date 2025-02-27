@@ -28,7 +28,7 @@ const ProductDetails = () => {
         />
         <PageTitle title="Products" subTitle="your product detail" />
       </div>
-      <div className="border bg-white border-gray-200 rounded-[10px] px-6">
+      <div className="border border-gray-200 rounded-[10px] px-6">
         <ViewFieldContainer isLoading={isLoading} fieldName="Identifier">
           <Typography>{productDetails?.id}</Typography>
         </ViewFieldContainer>
