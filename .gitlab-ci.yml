@@ -1,0 +1,22 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: node:16
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - build/
+
+deploy:
+  stage: deploy
+  image: vercel/cli
+  script:
+    - npm install -g vercel
+    - vercel --token mRyDXxY0Bd6bFTrqWRRzmgPa --prod
+  only:
+    - main
