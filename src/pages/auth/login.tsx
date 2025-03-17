@@ -69,13 +69,6 @@ const Login = () => {
               name="userName"
               placeholder="Enter your name"
             />
-            <RHFTextField
-              label="Password"
-              type="password"
-              control={control}
-              name="password"
-              placeholder="Enter your password"
-            />
           </div>
 
           <Button

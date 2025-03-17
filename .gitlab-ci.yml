@@ -19,4 +19,4 @@ deploy:
     - npm install -g vercel
     - vercel --token $VERCEL_TOKEN --prod --yes
   only:
-    - main
+    - amr
