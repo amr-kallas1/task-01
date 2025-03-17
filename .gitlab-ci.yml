@@ -12,7 +12,7 @@ build:
     paths:
       - build/
   only:
-    - amr
+    - main
 
 deploy:
   stage: deploy
@@ -21,4 +21,4 @@ deploy:
     - npm install -g vercel
     - vercel --token $VERCEL_TOKEN --prod --yes
   only:
-    - amr
+    - main
