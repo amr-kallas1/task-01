@@ -17,6 +17,6 @@ deploy:
   image: node:22.12.0 
   script:
     - npm install -g vercel
-    - vercel --token $VERCEL_TOKEN --prod
+    - vercel --token $VERCEL_TOKEN --prod --yes
   only:
     - main
