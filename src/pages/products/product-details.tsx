@@ -1,6 +1,5 @@
 import queries from "@/api/product/queries";
 import PageTitle from "@/components/global/page-title";
-import ReactHelmet from "@/components/global/react-helmet";
 import ViewFieldContainer from "@/components/global/view-field-container";
 import { Badge } from "@/components/ui/badge";
 import BreadCrumbs from "@/components/ui/breadcrumb";
@@ -13,26 +12,23 @@ const ProductDetails = () => {
   const { data: productDetails, isLoading } = queries.GetProduct(id);
   return (
     <>
-      <ReactHelmet name="product details">
-        <title>Product Details</title>
-      </ReactHelmet>
       <div className="flex flex-col mb-6 border-b border-gray-200">
         <BreadCrumbs
           data={[
-            { label: "Products", link: PRODUCT_PATH.PRODUCTS },
+            { label: "الطلاب", link: PRODUCT_PATH.PRODUCTS },
             {
-              label: "Product Details",
+              label: "تفاصيل الطالب",
               link: "",
             },
           ]}
         />
-        <PageTitle title="Products" subTitle="your product detail" />
+        <PageTitle title="الطلاب" subTitle="عرض تفاصيل الطالب" />
       </div>
       <div className="border border-gray-200 rounded-[10px] px-6">
-        <ViewFieldContainer isLoading={isLoading} fieldName="Identifier">
+        <ViewFieldContainer isLoading={isLoading} fieldName="رقم المعرف">
           <Typography>{productDetails?.id}</Typography>
         </ViewFieldContainer>
-        <ViewFieldContainer isLoading={isLoading} fieldName={"Name"}>
+        <ViewFieldContainer isLoading={isLoading} fieldName={"الاسم"}>
           <Typography>{productDetails?.slug}</Typography>
         </ViewFieldContainer>
         <ViewFieldContainer isLoading={isLoading} fieldName={"Description"}>

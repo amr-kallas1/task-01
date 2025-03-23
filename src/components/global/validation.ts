@@ -13,10 +13,10 @@ export const reactSelectValidation =
       },
     });
 
-export const stringValidation = string().required("this field is required");
+export const stringValidation = string().required("هذا الحقل مطلوب");
 
 export const passwordValidation = string().test({
-  message: "at least 6 character",
+  message: "على الأقل 6 أحرف",
   test: (value) => {
     return value
       ? value.length >= 6
@@ -32,5 +32,5 @@ export const numberValidation = number()
   .transform((value) => {
     return value === "" || Number.isNaN(value) ? null : value;
   })
-  .required("this field is required")
-  .positive("enter valid number");
+  .required("هذا الحقل مطلوب")
+  .positive("أدخل رقماً صالحاً");

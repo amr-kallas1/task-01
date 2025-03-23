@@ -14,6 +14,16 @@ export const PRODUCT_PAGES = {
   PRODUCT_DETAILS: lazy(() => import("../pages/products/product-details")),
 };
 
+export const SETTINGS_PAGES = {
+  SETTING: lazy(() => import("../pages/settings/settings")),
+  SETTING_ACTION: lazy(() => import("../pages/settings/setting-action")),
+};
+
+export const EXAMS_PAGES = {
+  EXAM: lazy(() => import("../pages/exams/exams")),
+  EXAM_ACTION: lazy(() => import("../pages/exams/exam-action")),
+};
+
 export const NOT_FOUND_PAGE = {
   NOT_FOUND: lazy(() => import("../components/global/not-found")),
 };

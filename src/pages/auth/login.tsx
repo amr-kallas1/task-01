@@ -1,22 +1,18 @@
 import RHFTextField from "@/components/hook-form/RHFTextField";
 import { Button } from "@/components/ui/button";
 import Waves from "@/components/ui/waves";
-import { usePermissionContext } from "@/context/permissionContext";
 import {
   ILoginForm,
   LoginDefaultValues,
   loginValidation,
 } from "@/validation/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
 import { Resolver, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
-import logo from "/assets/logo.jpg";
+//import { toast } from "sonner";
+import { UserRound } from "lucide-react";
 
 const Login = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { setPermission } = usePermissionContext();
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm<ILoginForm>({
     defaultValues: LoginDefaultValues,
@@ -24,59 +20,41 @@ const Login = () => {
   });
 
   const submitHandler = () => {
-    setIsLoading(true);
-    const newPermissions = [
-      "ViewUser",
-      "ViewProduct",
-      "SetProduct",
-      "DeleteProduct",
-    ];
-
-    setTimeout(() => {
-      setPermission(newPermissions);
-      localStorage.setItem("permissions", JSON.stringify(newPermissions));
-      toast.success("Login Successful!");
-      localStorage.setItem("token", "data.token");
-      navigate("/");
-      setIsLoading(false);
-    }, 2000);
+    navigate("/");
+    localStorage.setItem("token", "gdgs");
   };
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center relative overflow-hidden">
       <Waves />
       <div className="bg-white dark:bg-[#2e2a45] p-8 rounded-lg shadow-lg w-[550px] z-10">
-        <div className="flex justify-center mb-6">
-          <img
-            src={logo}
-            alt="Dentist Logo"
-            className="h-20 w-auto rounded-full"
-          />
-        </div>
-
         <h2 className="text-2xl font-bold text-gray-800 dark:text-green-500 mb-2 text-center">
-          Welcome Back!
+         أهلاً بعودتك!
         </h2>
         <p className="text-sm text-gray-600 dark:text-white text-center mb-6">
-          Please login to access your patient portal.
+          الرجاء تسجيل الدخول للوصول إلى لوحة التحكم.
         </p>
 
         <form onSubmit={handleSubmit(submitHandler)}>
           <div className="mb-4">
             <RHFTextField
-              label="UserName"
+              label="الاسم"
               control={control}
               name="userName"
-              placeholder="Enter your name"
+              placeholder="أدخل الاسم"
+              endAdornment={<UserRound />}
+            />
+            <RHFTextField
+              label="كلمة المرور"
+              type="password"
+              control={control}
+              name="password"
+              placeholder="أدخل كلمة المرور"
             />
           </div>
 
-          <Button
-            isLoading={isLoading}
-            variant="default"
-            className="w-full h-10"
-          >
-            Login
+          <Button isLoading={false} variant="default" className="w-full h-10">
+            تسجيل الدخول
           </Button>
         </form>
       </div>

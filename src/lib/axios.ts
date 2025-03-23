@@ -2,7 +2,7 @@ import { AUTH_PATH } from "@/routes/path";
 import ax from "axios";
 import { toast } from "sonner";
 
-export const BACKEND_BASE_URL = "https://jsonplaceholder.org/";
+export const BACKEND_BASE_URL = "https://jsonplaceholder.ir/";
 
 export const API_BASE_URL = BACKEND_BASE_URL ;
 

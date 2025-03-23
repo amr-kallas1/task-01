@@ -1,6 +1,14 @@
-import { permissionsOptions } from "@/constants/static-options";
-import { PRODUCT_PATH, USERS_PATH } from "@/routes/path";
 import {
+  EXAMS_PATH,
+  PRODUCT_PATH,
+  SETTINGS_PATH,
+  USERS_PATH,
+} from "@/routes/path";
+import {
+  BookText,
+  House,
+  School,
+  Settings,
   Users,
   UtensilsCrossed
 } from "lucide-react";
@@ -14,22 +22,38 @@ const Icon = (path: string | JSX.Element, className?: CSSProperties) =>
   );
 
 const ICONS = {
+  home: Icon(<House size={25} />),
   users: Icon(<Users size={25} />),
   products: Icon(<UtensilsCrossed size={25} />),
+  student: Icon(<School size={25} />),
+  settings: Icon(<Settings size={25} />),
+  exams: Icon(<BookText size={25} />),
 };
 
 export const firstNavConfig = [
   {
-    title: "Users",
+    title: "الرئيسية",
+    icon: ICONS.home,
+    pathName: "/",
+  },
+  {
+    title: "الموظفين",
     icon: ICONS.users,
-    show: permissionsOptions.user.view,
     pathName: USERS_PATH.USERS,
   },
-
   {
-    title: "Products",
-    icon: ICONS.products,
-    show: permissionsOptions.product.view,
+    title: "الطلاب",
+    icon: ICONS.student,
     pathName: PRODUCT_PATH.PRODUCTS,
+  },
+  {
+    title: "الامتحانات",
+    icon: ICONS.exams,
+    pathName: EXAMS_PATH.EXAMS,
+  },
+  {
+    title: "إعدادات عامة",
+    icon: ICONS.settings,
+    pathName: SETTINGS_PATH.SETTINGS,
   },
 ];

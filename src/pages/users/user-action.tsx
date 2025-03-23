@@ -1,9 +1,6 @@
 import queries, { keys } from "@/api/product/queries";
 import { IUpdateProduct } from "@/api/product/type";
 import PageTitle from "@/components/global/page-title";
-import RHFInputFile from "@/components/hook-form/RHFInputFile";
-import RHFReactSelect from "@/components/hook-form/RHFMultiSelect";
-import RHFTextArea from "@/components/hook-form/RHFTextArea";
 import RHFTextField from "@/components/hook-form/RHFTextField";
 import BreadCrumbs from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
@@ -31,7 +28,7 @@ const ProductAction = () => {
   const { data: productDetails, isLoading } = queries.GetProduct(id);
   const { mutate, isPending } = queries.ProductAction(id);
 
-  const { handleSubmit, control, reset,setValue } = useForm<IActionProduct>({
+  const { handleSubmit, control, reset, setValue } = useForm<IActionProduct>({
     resolver: yupResolver(
       productValidation
     ) as unknown as Resolver<IActionProduct>,
@@ -70,17 +67,17 @@ const ProductAction = () => {
       <div className="flex flex-col mb-6 border-b border-gray-200">
         <BreadCrumbs
           data={[
-            { label: "الطلاب", link: PRODUCT_PATH.PRODUCTS },
+            { label: "الموظفين", link: PRODUCT_PATH.PRODUCTS },
             {
-              label: `${id ? "تعديل الطالب" : "إضافة طالب"}`,
+              label: `${id ? "تعديل الموظف" : "إضافة موظف"}`,
               link: "",
             },
           ]}
         />
         <div className="flex justify-between items-start">
           <PageTitle
-            title={`${id ? "تعديل الطالب" : "إضافة طالب"}`}
-            subTitle={`${id ? "عدل معلومات الطالب" : "إضافة معلومات الطالب"}`}
+            title={`${id ? "تعديل الموظف" : "إضافة موظف"}`}
+            subTitle={`${id ? "عدل معلومات الموظف" : "إضافة معلومات الموظف"}`}
           />
         </div>
       </div>
@@ -109,45 +106,7 @@ const ProductAction = () => {
             placeholder="Enter the price"
           />
 
-          <RHFReactSelect
-            control={control}
-            name="category"
-            skeleton={isLoading}
-            isLoading={false}
-            label="Category"
-            placeholder="choose your category"
-            options={[
-              {
-                label: "Lorem",
-                value: "Lorem",
-              },
-              {
-                label: "Food",
-                value: "Food",
-              },
-              {
-                label: "Soups",
-                value: "Soups",
-              },
-            ]}
-          />
 
-          <RHFTextArea
-            name="title"
-            control={control}
-            label="Content"
-            placeholder="Enter the content"
-            isLoading={isLoading}
-          />
-
-          <RHFInputFile
-            control={control}
-            name="image"
-            setValue={setValue}
-            isMulti
-            isLoading={isLoading}
-            label="Image"
-          />
           <div className="flex gap-4 w-[90%] flex-col-reverse justify-center items-center mx-auto mt-5">
             <Button
               type="button"
@@ -158,7 +117,7 @@ const ProductAction = () => {
               رجوع
             </Button>
             <Button isLoading={isPending} className="w-full">
-              {id ? "تعديل الطالب" : "إضافة طالب"}
+              {id ? "تعديل الموظف" : "إضافة موظف"}
             </Button>
           </div>
         </div>

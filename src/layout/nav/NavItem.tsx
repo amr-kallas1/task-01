@@ -28,7 +28,7 @@ const NavItem: React.FunctionComponent<NavItemProps> = ({
   return (
     <div
       className={cn(
-        `flex items-center w-full  rounded-sm my-1 ${
+        `flex  w-full rounded-sm my-1 ${
           isMatch
             ? "bg-primary dark:bg-green-600"
             : "hover:bg-[#f1f1f1] dark:hover:bg-green-700"
@@ -40,9 +40,9 @@ const NavItem: React.FunctionComponent<NavItemProps> = ({
         to={pathname || "#"}
         onClick={onClick}
         className={cn(
-          `text-gray-700 dark:text-white text-md leading-6 font-medium w-full flex ${
-            openSidebar ? "justify-start" : "justify-center"
-          } items-center gap-3 px-3 py-2 transition-opacity duration-300 `,
+          `text-gray-700 dark:text-white duration-300 text-md leading-6 font-medium w-full flex ${
+            openSidebar ? "justify-start" : "justify-start"
+          } items-center gap-3 px-3 py-2 transition-opacity `,
           isMatch && "text-gray-800 dark:text-white"
         )}
       >

@@ -1,11 +1,9 @@
 import TooltipButton from "@/components/global/tooltipButton";
+import { useCurrentScreenContext } from "@/context/currentScreenContext";
 import { useOpenSidebarContext } from "@/context/sidebarContext";
 import { AUTH_PATH } from "@/routes/path";
-import { LogOut } from "lucide-react";
-import { AlignJustify } from "lucide-react";
+import { AlignJustify, LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useCurrentScreenContext } from "@/context/currentScreenContext";
-import ThemeToggle from "@/components/icons/theme";
 const Navbar = () => {
   const { currentScreen } = useCurrentScreenContext();
   const { openSidebar, setOpenSidebar } = useOpenSidebarContext();
@@ -13,12 +11,12 @@ const Navbar = () => {
 
   return (
     <div
-      className={`flex items-center w-screen justify-between p-1 h-16 text-black flex-1  absolute  transition-all duration-300 ${
+      className={`flex z-[9999] bg-white items-center w-screen justify-between p-1 h-16 text-black flex-1  absolute  transition-all duration-300 ${
         currentScreen == "lg" || currentScreen == "xl" || currentScreen == "2xl"
           ? openSidebar
-            ? "left-[280px] max-w-[calc(100%-280px)] "
-            : "left-[80px] max-w-[calc(100%-80px)] "
-          : "left-0 w-full"
+            ? "right-[280px] max-w-[calc(100%-280px)] "
+            : "right-[68px] max-w-[calc(100%-68px)] "
+          : "right-0 w-full"
       }`}
     >
       <AlignJustify
@@ -28,9 +26,8 @@ const Navbar = () => {
       />
 
       <div className="flex gap-5">
-        <ThemeToggle />
         <TooltipButton
-          title="Logout"
+          title="تسجيل الخروج"
           onClick={() => {
             localStorage.removeItem("token");
             localStorage.removeItem("permissions");

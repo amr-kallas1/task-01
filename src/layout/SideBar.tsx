@@ -4,13 +4,12 @@ import { useOpenSidebarContext } from "@/context/sidebarContext";
 import { cn } from "@/lib/utils";
 import { getCurrentBreakpoint } from "@/utils/theme-functions";
 import { DialogTitle } from "@radix-ui/react-dialog";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import NavList from "./nav/NavList";
 import { firstNavConfig } from "./nav/config";
 const SideBar: React.FC = () => {
   const { currentScreen, setCurrentScreen } = useCurrentScreenContext();
   const { openSidebar, setOpenSidebar } = useOpenSidebarContext();
-  const [showTitle, setShowTitle] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,18 +22,13 @@ const SideBar: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    if (openSidebar) {
-      setTimeout(() => setShowTitle(true), 300);
-    } else {
-      setShowTitle(false);
-    }
-  }, [openSidebar]);
-
   const sidebarContent = (
     <div className=" flex flex-1 flex-col justify-between gap-6 pt-8 ">
       <div className="flex flex-1 flex-col justify-start  gap-1 mb-2 ">
-        <NavList navListData={firstNavConfig} showTitle={showTitle} />
+        <NavList
+          navListData={firstNavConfig}
+          showTitle={openSidebar ? true : false}
+        />
       </div>
     </div>
   );
@@ -47,7 +41,7 @@ const SideBar: React.FC = () => {
         "flex flex-col border border-r-gray-200 sticky top-0 z-50 h-screen overflow-y-auto transition-all duration-300 ",
         openSidebar
           ? "min-w-[280px] max-w-[280px]"
-          : "min-w-[80px] max-w-[80px]"
+          : "min-w-[68px] max-w-[68px]"
       )}
     >
       <div className="-mt-4 overflow-y-auto overflow-x-hidden flex flex-1 px-2">
@@ -58,7 +52,7 @@ const SideBar: React.FC = () => {
     <Drawer
       shouldScaleBackground={true}
       open={openSidebar}
-      direction="left"
+      direction="right"
       onOpenChange={() => setOpenSidebar(false)}
     >
       <DrawerContent

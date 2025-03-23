@@ -68,7 +68,7 @@ const RHFTextField: React.FunctionComponent<RHFTextFieldProps> = ({
                   );
                   setIsInitial(isNaN(e.target.valueAsNumber) ? true : false);
                 }}
-                endAdornmentClassName={endAdornmentClassName}
+                endAdornmentClassName={cn(endAdornmentClassName, "border-l")}
                 startAdornmentClassName={startAdornmentClassName}
                 placeholder={placeholder ? placeholder : undefined}
                 id={name}
@@ -84,7 +84,7 @@ const RHFTextField: React.FunctionComponent<RHFTextFieldProps> = ({
                     <Button
                       type="button"
                       variant="outline"
-                      className=" p-0 w-7 h-8 border-none rounded-full "
+                      className="p-0 w-7 h-8 border-none rounded-full"
                       onClick={() => setShowPassword(!showPassword)}
                     >
                       {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}

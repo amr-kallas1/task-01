@@ -20,8 +20,6 @@ export const getCurrentBreakpoint = (): ScreenType => {
 
   for (const breakpoint of Object.keys(breakpoints)) {
     const breakpointValue = getBreakpointValue(breakpoint as ScreenType);
-    console.log({breakpointValue})
-
     if (
       breakpointValue > biggestBreakpointValue &&
       window.innerWidth >= breakpointValue

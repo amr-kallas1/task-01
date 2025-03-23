@@ -73,8 +73,8 @@ const PaginationPrevious = ({
       className={cn("gap-1 pl-2.5 grow", className)}
       {...props}
     >
-      <ChevronLeft className="h-4 w-4" />
-      <span>Previous</span>
+      <ChevronRight className="h-4 w-4" />
+      <span>السابق</span>
     </Button>
   );
 };
@@ -92,8 +92,8 @@ const PaginationNext = ({
       className={cn("gap-1 pr-2.5 grow", className)}
       {...props}
     >
-      <span>Next</span>
-      <ChevronRight className="h-4 w-4" />
+      <span>التالي</span>
+      <ChevronLeft className="h-4 w-4" />
     </Button>
   );
 };

@@ -35,8 +35,4 @@ export const productValues = (data: IUpdateProduct) => {
 
 export const productValidation = object().shape({
   slug: stringValidation,
-  title: stringValidation,
-  category: reactSelectValidation,
-  image: stringValidation,
-  price: numberValidation,
 });
