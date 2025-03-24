@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`flex z-[9999] bg-white items-center w-screen justify-between p-1 h-16 text-black flex-1  absolute  transition-all duration-300 ${
+      className={`flex z-[49] bg-white items-center w-screen justify-between p-1 h-16 text-black flex-1  absolute  transition-all duration-300 ${
         currentScreen == "lg" || currentScreen == "xl" || currentScreen == "2xl"
           ? openSidebar
             ? "right-[280px] max-w-[calc(100%-280px)] "

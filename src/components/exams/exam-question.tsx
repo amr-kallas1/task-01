@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { RHFCheckbox } from "../hook-form/RHFCheckBox";
 import RHFTextField from "../hook-form/RHFTextField";
 
-const ExamQuestions = () => {
+const ExamQuestions = ({ onSubmit }: { onSubmit: () => void }) => {
   const navigate = useNavigate();
   const numberOfQuestions = localStorage.getItem("numberOfQuestions") ?? 0;
   const numberOfAnswers = localStorage.getItem("numberOfAnswers") ?? 0;
@@ -20,8 +20,14 @@ const ExamQuestions = () => {
 
   const submitHandler = async () => {};
 
+  const { fields, append, remove } = useFieldArray<any>({
+    control,
+    name: `mcq`,
+  });
+
   useEffect(() => {
     if (Number(numberOfQuestions) > 0) {
+      remove();
       for (let i = 0; i < Number(numberOfQuestions); i++) {
         append({
           subQues: "",
@@ -35,12 +41,10 @@ const ExamQuestions = () => {
     }
     return () => {
       localStorage.removeItem("numberOfQuestions");
+      localStorage.removeItem("numberOfAnswers");
     };
   }, [numberOfQuestions]);
-  const { fields, append, remove } = useFieldArray<any>({
-    control,
-    name: `mcq`,
-  });
+
   return (
     <div>
       <form onSubmit={handleSubmit(submitHandler)}>
@@ -64,7 +68,7 @@ const ExamQuestions = () => {
                     />
                   </div>
                   <div className="flex gap-3">
-                    {Array(Number(numberOfAnswers)??0)
+                    {Array(Number(numberOfAnswers) ?? 0)
                       .fill(0)
                       .map(() => (
                         <div className="flex gap-4 items-center flex-1">
@@ -85,11 +89,11 @@ const ExamQuestions = () => {
                   }}
                 />
               </div>
-              {errors && (
+              {/* {errors && (
                 <Typography className="text-sm font-medium text-red-500 dark:text-red-900 text-start mt-1">
                   هناك حقول مطلوبة
                 </Typography>
-              )}
+              )} */}
             </div>
           );
         })}
@@ -109,7 +113,7 @@ const ExamQuestions = () => {
         >
           <Plus />
         </Button>
-        <div className="flex gap-2 items-center mt-3 justify-center">
+        <div className="flex gap-2 items-center mt-3 pb-10 justify-center">
           <Button isLoading={false} className="w-[30%]">
             تأكيد
           </Button>
@@ -117,7 +121,7 @@ const ExamQuestions = () => {
             type="button"
             variant="outline"
             className="w-[30%]"
-            onClick={() => navigate(-1)}
+            onClick={onSubmit}
           >
             رجوع
           </Button>

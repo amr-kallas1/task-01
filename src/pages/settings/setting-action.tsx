@@ -2,6 +2,7 @@ import PageTitle from "@/components/global/page-title";
 import RHFTextField from "@/components/hook-form/RHFTextField";
 import BreadCrumbs from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useOpenSidebarContext } from "@/context/sidebarContext";
 import { SETTINGS_PATH } from "@/routes/path";
 import { useForm } from "react-hook-form";
@@ -58,10 +59,11 @@ const SettingAction = () => {
             placeholder="أدخل عدد الاحتمالات"
           />
           <input
-            type="datetime-local"
+            type="time"
             id="time"
             className="time-input p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           />
+          <Input type="time"/>
           <div className="flex gap-4 w-[90%] flex-col-reverse justify-center items-center mx-auto mt-5">
             <Button
               type="button"

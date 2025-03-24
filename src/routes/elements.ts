@@ -1,5 +1,9 @@
 import { lazy } from "react";
 
+export const HOME_PAGES = {
+  HOME: lazy(() => import("../pages/home/home")),
+};
+
 export const AUTH_PAGES = {
   AUTH: lazy(() => import("../pages/auth/login")),
 };

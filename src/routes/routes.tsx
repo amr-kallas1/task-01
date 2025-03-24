@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import {
   EXAMS_PAGES,
+  HOME_PAGES,
   NOT_FOUND_PAGE,
   PRODUCT_PAGES,
   SETTINGS_PAGES,
@@ -32,6 +33,11 @@ export default createBrowserRouter(
         </Route>
         <Route element={<Layout />}>
           <Route element={<Auth />}>
+            {/* Home Page */}
+            <Route path={"/"}>
+              <Route index element={<HOME_PAGES.HOME />} />
+            </Route>
+
             {/* User Page */}
             <Route path={USERS_PATH.USERS}>
               <Route index element={<USER_PAGES.USER />} />
