@@ -8,7 +8,7 @@ const API = {
       API_ROUTES.AUTH.login,
       body
     );
-    return data;
+    return data.data;
   },
 };
 export default API;

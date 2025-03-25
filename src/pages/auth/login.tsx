@@ -23,9 +23,10 @@ const Login = () => {
     console.log(body)
     mutate(body, {
       onSuccess: (data) => {
+        console.log(data)
         toast.success("تم تسجيل الدخول بنجاح");
         navigate("/");
-        localStorage.setItem("token", "abcde12345");
+        localStorage.setItem("token", data.token);
       },
     });
   };

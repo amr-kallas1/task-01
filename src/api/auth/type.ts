@@ -4,13 +4,15 @@ export type ILogin = {
 };
 
 export type ILoginResponse = {
-  status: string;
-  user: {
-    id: string;
-    email: string;
-    name: string;
-    role: string;
+  data: {
     status: string;
+    user: {
+      id: string;
+      email: string;
+      name: string;
+      role: string;
+      status: string;
+    };
+    token: string;
   };
-  token: string;
 };
