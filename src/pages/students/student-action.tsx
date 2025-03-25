@@ -1,14 +1,11 @@
-import queries, { keys } from "@/api/product/queries";
-import { IUpdateProduct } from "@/api/product/type";
+import queries, { keys } from "@/api/student/queries";
+import { IUpdateProduct } from "@/api/student/type";
 import PageTitle from "@/components/global/page-title";
-import RHFInputFile from "@/components/hook-form/RHFInputFile";
-import RHFReactSelect from "@/components/hook-form/RHFMultiSelect";
-import RHFTextArea from "@/components/hook-form/RHFTextArea";
 import RHFTextField from "@/components/hook-form/RHFTextField";
 import BreadCrumbs from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { useOpenSidebarContext } from "@/context/sidebarContext";
-import { PRODUCT_PATH } from "@/routes/path";
+import { STUDENT_PATH } from "@/routes/path";
 import {
   IActionProduct,
   productDefaultValuesAction,
@@ -22,16 +19,16 @@ import { Resolver, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 
-const ProductAction = () => {
+const StudentAction = () => {
   const { openSidebar } = useOpenSidebarContext();
   const { id = "" } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { data: productDetails, isLoading } = queries.GetProduct(id);
-  const { mutate, isPending } = queries.ProductAction(id);
+  // const { mutate, isPending } = queries.StudentAction(id);
 
-  const { handleSubmit, control, reset,setValue } = useForm<IActionProduct>({
+  const { handleSubmit, control, reset } = useForm<IActionProduct>({
     resolver: yupResolver(
       productValidation
     ) as unknown as Resolver<IActionProduct>,
@@ -51,18 +48,18 @@ const ProductAction = () => {
       category: data.category.value,
     };
 
-    mutate(body, {
-      onSuccess: () => {
-        toast.success(
-          id
-            ? "the product has been edited successfully"
-            : "the product has been added successfully"
-        );
-        queryClient.invalidateQueries({ queryKey: keys.getAllProduct._def });
-        queryClient.invalidateQueries({ queryKey: keys.getProduct._def });
-        navigate(PRODUCT_PATH.PRODUCTS);
-      },
-    });
+    // mutate(body, {
+    // //   onSuccess: () => {
+    // //     toast.success(
+    // //       id
+    // //         ? "the product has been edited successfully"
+    // //         : "the product has been added successfully"
+    // //     );
+    // //     queryClient.invalidateQueries({ queryKey: keys.getAllProduct._def });
+    // //     queryClient.invalidateQueries({ queryKey: keys.getProduct._def });
+    // //     navigate(STUDENT_PATH.STUDENT);
+    // //   },
+    // // });
   };
 
   return (
@@ -70,7 +67,7 @@ const ProductAction = () => {
       <div className="flex flex-col mb-6 border-b border-gray-200">
         <BreadCrumbs
           data={[
-            { label: "الطلاب", link: PRODUCT_PATH.PRODUCTS },
+            { label: "الطلاب", link: STUDENT_PATH.STUDENT },
             {
               label: `${id ? "تعديل الطالب" : "إضافة طالب"}`,
               link: "",
@@ -95,69 +92,36 @@ const ProductAction = () => {
         >
           <RHFTextField
             isLoading={isLoading}
-            name="slug"
+            name="name"
             control={control}
             label="الاسم"
-            placeholder="Enter name of product"
+            placeholder="ادخل الاسم"
           />
           <RHFTextField
             isLoading={isLoading}
-            name="price"
+            name="email"
             control={control}
-            label="Price"
+            label="الايميل"
             type="number"
-            placeholder="Enter the price"
+            placeholder="ادخل الايميل"
           />
-
-          <RHFReactSelect
+          <RHFTextField
+            label="كلمة المرور"
+            type="password"
             control={control}
-            name="category"
-            skeleton={isLoading}
-            isLoading={false}
-            label="Category"
-            placeholder="choose your category"
-            options={[
-              {
-                label: "Lorem",
-                value: "Lorem",
-              },
-              {
-                label: "Food",
-                value: "Food",
-              },
-              {
-                label: "Soups",
-                value: "Soups",
-              },
-            ]}
-          />
-
-          <RHFTextArea
-            name="title"
-            control={control}
-            label="Content"
-            placeholder="Enter the content"
-            isLoading={isLoading}
-          />
-
-          <RHFInputFile
-            control={control}
-            name="image"
-            setValue={setValue}
-            isMulti
-            isLoading={isLoading}
-            label="Image"
+            name="password"
+            placeholder="أدخل كلمة المرور"
           />
           <div className="flex gap-4 w-[90%] flex-col-reverse justify-center items-center mx-auto mt-5">
             <Button
               type="button"
               variant="outline"
               className="w-full"
-              onClick={() => navigate(PRODUCT_PATH.PRODUCTS)}
+              onClick={() => navigate(STUDENT_PATH.STUDENT)}
             >
               رجوع
             </Button>
-            <Button isLoading={isPending} className="w-full">
+            <Button isLoading={false} className="w-full">
               {id ? "تعديل الطالب" : "إضافة طالب"}
             </Button>
           </div>
@@ -167,4 +131,4 @@ const ProductAction = () => {
   );
 };
 
-export default ProductAction;
+export default StudentAction;

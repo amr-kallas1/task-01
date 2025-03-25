@@ -6,7 +6,7 @@ import Typography from "../ui/typography";
 
 interface RHFInputLabel {
   label?: string;
-  isOptional?: boolean;
+  secondaryLabel?: string;
   className?: string;
   tooltipTitle?: string;
   tooltipDescription?: string;
@@ -15,7 +15,7 @@ interface RHFInputLabel {
 const RHFInputLabel: React.FunctionComponent<RHFInputLabel> = ({
   label,
   className,
-  isOptional,
+  secondaryLabel,
 }) => {
   if (!label) return <div className={className}></div>;
 
@@ -25,9 +25,9 @@ const RHFInputLabel: React.FunctionComponent<RHFInputLabel> = ({
         <Label className="text-gray-700 dark:text-white inline-block">
           {capitalizeFirstLetter(label)}
         </Label>
-        {isOptional && (
+        {secondaryLabel && (
           <Typography className="text-gray-400 dark:text-white" size="medium">
-            Optional
+            {secondaryLabel}
           </Typography>
         )}
       </div>

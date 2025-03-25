@@ -1,5 +1,5 @@
-import queries, { keys } from "@/api/product/queries";
-import { IUpdateProduct } from "@/api/product/type";
+import queries, { keys } from "@/api/student/queries";
+import { IUpdateProduct } from "@/api/student/type";
 import PageTitle from "@/components/global/page-title";
 import RHFTextField from "@/components/hook-form/RHFTextField";
 import BreadCrumbs from "@/components/ui/breadcrumb";
@@ -92,20 +92,26 @@ const ProductAction = () => {
         >
           <RHFTextField
             isLoading={isLoading}
-            name="slug"
+            name="name"
             control={control}
             label="الاسم"
-            placeholder="Enter name of product"
+            placeholder="ادخل الاسم"
           />
           <RHFTextField
             isLoading={isLoading}
-            name="price"
+            name="email"
             control={control}
-            label="Price"
+            label="الايميل"
             type="number"
-            placeholder="Enter the price"
+            placeholder="ادخل الايميل"
           />
-
+          <RHFTextField
+            label="كلمة المرور"
+            type="password"
+            control={control}
+            name="password"
+            placeholder="أدخل كلمة المرور"
+          />
 
           <div className="flex gap-4 w-[90%] flex-col-reverse justify-center items-center mx-auto mt-5">
             <Button

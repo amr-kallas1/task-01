@@ -9,6 +9,7 @@ import RHFInputLabel from "./RHFInputLabel";
 interface RHFTextFieldProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  secondaryLabel?: string;
   isLoading?: boolean;
   isOptional?: boolean;
   inputClassName?: string;
@@ -24,6 +25,7 @@ const RHFTextField: React.FunctionComponent<RHFTextFieldProps> = ({
   name,
   type,
   label,
+  secondaryLabel,
   className,
   isLoading,
   isOptional,
@@ -46,7 +48,7 @@ const RHFTextField: React.FunctionComponent<RHFTextFieldProps> = ({
   };
   return (
     <div className={cn(" w-full px-5 py-2", className)}>
-      <RHFInputLabel label={label} isOptional={isOptional} />
+      <RHFInputLabel label={label} secondaryLabel={secondaryLabel} />
       {isLoading && <Skeleton className="h-[44px]" />}
       {!isLoading && (
         <Controller

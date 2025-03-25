@@ -2,9 +2,9 @@ import { AUTH_PATH } from "@/routes/path";
 import ax from "axios";
 import { toast } from "sonner";
 
-export const BACKEND_BASE_URL = "https://jsonplaceholder.ir/";
+export const BACKEND_BASE_URL = "https://quizzes-wqm2.onrender.com";
 
-export const API_BASE_URL = BACKEND_BASE_URL ;
+export const API_BASE_URL = BACKEND_BASE_URL + "/api/v1/"; ;
 
 const axios = ax.create({
   baseURL: API_BASE_URL,
@@ -33,8 +33,8 @@ axios.interceptors.response.use(
   },
   (errors) => {
     if (errors?.response.status == 401) {
-      localStorage.clear();
-      window.location.href = `${AUTH_PATH.LOGIN}`;
+      // localStorage.clear();
+      // window.location.href = `${AUTH_PATH.LOGIN}`;
     }
     if (errors?.response.data?.errorMessage)
       toast.error(errors?.response.data?.errorMessage);

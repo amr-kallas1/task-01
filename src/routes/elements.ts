@@ -12,10 +12,9 @@ export const USER_PAGES = {
   USER: lazy(() => import("../pages/users/user")),
 };
 
-export const PRODUCT_PAGES = {
-  PRODUCT: lazy(() => import("../pages/products/products")),
-  PRODUCT_ACTION: lazy(() => import("../pages/products/product-action")),
-  PRODUCT_DETAILS: lazy(() => import("../pages/products/product-details")),
+export const STUDENT_PAGES = {
+  STUDENT: lazy(() => import("../pages/students/students")),
+  STUDENT_ACTION: lazy(() => import("../pages/students/student-action")),
 };
 
 export const SETTINGS_PAGES = {

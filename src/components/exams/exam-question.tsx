@@ -39,10 +39,7 @@ const ExamQuestions = ({ onSubmit }: { onSubmit: () => void }) => {
         });
       }
     }
-    return () => {
-      localStorage.removeItem("numberOfQuestions");
-      localStorage.removeItem("numberOfAnswers");
-    };
+    
   }, [numberOfQuestions]);
 
   return (

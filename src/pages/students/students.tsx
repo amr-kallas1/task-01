@@ -1,8 +1,7 @@
-import queries, { keys } from "@/api/product/queries";
+import queries, { keys } from "@/api/student/queries";
 import DeleteDialog from "@/components/global/delete-dialog";
 import PageTitle from "@/components/global/page-title";
 import TooltipButton from "@/components/global/tooltipButton";
-import Eye from "@/components/icons/eye";
 import Pencil from "@/components/icons/pencil";
 import Trash from "@/components/icons/trash";
 import Table from "@/components/table/table";
@@ -10,19 +9,18 @@ import BreadCrumbs from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { useOpenDeleteDialogContext } from "@/context/openDeleteDialog";
-import { PRODUCT_PATH } from "@/routes/path";
+import { STUDENT_PATH } from "@/routes/path";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const columns = [
   { title: "#" },
-  { title: "اسم الموظف" },
-  { title: "الكنية" },
-  { title: "رقم الهاتف" },
+  { title: "اسم الطالب" },
+  { title: "الايميل" },
   { title: "الإجراءات", className: "text-center" },
 ];
 
-const Products = () => {
+const Students = () => {
   const navigate = useNavigate();
   const [id, setId] = useState<number | null>(null);
   const { setOpenDeleteDialog } = useOpenDeleteDialogContext();
@@ -37,15 +35,13 @@ const Products = () => {
   return (
     <>
       <div className="flex flex-col mb-6 border-b border-gray-200">
-        <BreadCrumbs
-          data={[{ label: "الطلاب", link: PRODUCT_PATH.PRODUCTS }]}
-        />
+        <BreadCrumbs data={[{ label: "الطلاب", link: STUDENT_PATH.STUDENT }]} />
         <div className="flex justify-between items-start">
           <PageTitle title="الطلاب" subTitle="تحكم وإدارة الطلاب" />
           <Button
             buttonContainerClass="gap-1"
             variant="add"
-            onClick={() => navigate(PRODUCT_PATH.ADD_PRODUCT)}
+            onClick={() => navigate(STUDENT_PATH.ADD_STUDENT)}
           >
             إضافة طالب
           </Button>
@@ -65,18 +61,9 @@ const Products = () => {
             <TableCell className="font-medium ">{index + 1}</TableCell>
             <TableCell>{title}</TableCell>
             <TableCell>{"name"} </TableCell>
-            <TableCell>986933296</TableCell>
             <TableCell className={`flex justify-center`}>
               <TooltipButton
-                onClick={() =>
-                  navigate(PRODUCT_PATH.PRODUCT_DETAILS + "/" + id)
-                }
-                icon={<Eye />}
-                title="التفاصيل"
-                className="border-none items-start p-2 rounded-full hover:bg-accent"
-              />
-              <TooltipButton
-                onClick={() => navigate(PRODUCT_PATH.EDIT_PRODUCT + "/" + id)}
+                onClick={() => navigate(STUDENT_PATH.EDIT_STUDENT + "/" + id)}
                 icon={<Pencil />}
                 title="تعديل المعلومات"
                 className="border-none items-start p-2 rounded-full hover:bg-accent"
@@ -104,4 +91,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Students;

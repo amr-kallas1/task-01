@@ -1,4 +1,4 @@
-import { IUpdateProduct } from "@/api/product/type";
+import { IUpdateProduct } from "@/api/student/type";
 import {
   numberValidation,
   reactSelectValidation,

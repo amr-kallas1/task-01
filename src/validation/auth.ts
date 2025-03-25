@@ -4,17 +4,13 @@ import {
   stringValidation,
 } from "@/components/global/validation";
 
-export type ILoginForm = {
-  userName: string;
-  password: string;
-};
 
 export const LoginDefaultValues = {
-  userName: "",
+  email: "",
   password: "",
 };
 
 export const loginValidation = object().shape({
-  userName: stringValidation,
+  email: stringValidation,
   password: passwordValidation,
 });

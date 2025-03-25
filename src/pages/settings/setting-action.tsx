@@ -1,20 +1,48 @@
+import queries, { keys } from "@/api/settings/queries";
 import PageTitle from "@/components/global/page-title";
 import RHFTextField from "@/components/hook-form/RHFTextField";
 import BreadCrumbs from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useOpenSidebarContext } from "@/context/sidebarContext";
 import { SETTINGS_PATH } from "@/routes/path";
+import {
+  IQuizzeForm,
+  settingDefaultValues,
+  settingValidation,
+} from "@/validation/setting";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "sonner";
 
 const SettingAction = () => {
   const { id = "" } = useParams();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { openSidebar } = useOpenSidebarContext();
-  const { handleSubmit, control } = useForm({});
+  const { handleSubmit, control } = useForm({
+    defaultValues: settingDefaultValues,
+    resolver: yupResolver(settingValidation),
+  });
 
-  const submitHandler = () => {};
+  const { mutate ,isPending} = queries.QuizzeAction(id);
+
+  const submitHandler = (data: IQuizzeForm) => {
+    const body = {
+      id,
+      ...data,
+    };
+    mutate(body, {
+      onSuccess: () => {
+        toast.success(
+          id ? "تمت تعديل البيانات بنجاح" : "تمت إضافة البيانات بنجاح"
+        );
+        queryClient.invalidateQueries({ queryKey: keys.getAllQuizzes._def });
+        navigate(SETTINGS_PATH.SETTINGS);
+      },
+    });
+  };
   return (
     <div>
       <div className="flex flex-col mb-6 border-b border-gray-200">
@@ -45,25 +73,29 @@ const SettingAction = () => {
         >
           <RHFTextField
             isLoading={false}
-            name="slug"
+            name="name"
             control={control}
             label="الاسم"
             placeholder="أدخل اسم الإعدادات"
           />
           <RHFTextField
             isLoading={false}
-            name="price"
+            name="numberOfAttempts"
             control={control}
             label="عدد الاحتمالات"
             type="number"
             placeholder="أدخل عدد الاحتمالات"
           />
-          <input
-            type="time"
-            id="time"
-            className="time-input p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+          <RHFTextField
+            isLoading={false}
+            name="duration"
+            control={control}
+            label="المدة الزمنية"
+            type="number"
+            secondaryLabel="(بالدقيقة)"
+            placeholder="أدخل المدة الزمنية"
           />
-          <Input type="time"/>
+
           <div className="flex gap-4 w-[90%] flex-col-reverse justify-center items-center mx-auto mt-5">
             <Button
               type="button"
@@ -73,7 +105,7 @@ const SettingAction = () => {
             >
               رجوع
             </Button>
-            <Button isLoading={false} className="w-full">
+            <Button isLoading={isPending} className="w-full">
               {id ? "تعديل البيانات" : "إضافة البيانات"}
             </Button>
           </div>

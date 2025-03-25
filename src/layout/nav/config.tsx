@@ -1,6 +1,6 @@
 import {
   EXAMS_PATH,
-  PRODUCT_PATH,
+  STUDENT_PATH,
   SETTINGS_PATH,
   USERS_PATH,
 } from "@/routes/path";
@@ -44,7 +44,7 @@ export const firstNavConfig = [
   {
     title: "الطلاب",
     icon: ICONS.student,
-    pathName: PRODUCT_PATH.PRODUCTS,
+    pathName: STUDENT_PATH.STUDENT,
   },
   {
     title: "الامتحانات",

@@ -1,24 +1,15 @@
-import queries, { keys } from "@/api/product/queries";
-import { IUpdateProduct } from "@/api/product/type";
-import PageTitle from "@/components/global/page-title";
+import queries from "@/api/student/queries";
 import RHFReactSelect from "@/components/hook-form/RHFMultiSelect";
 import RHFTextField from "@/components/hook-form/RHFTextField";
-import BreadCrumbs from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { useOpenSidebarContext } from "@/context/sidebarContext";
-import { PRODUCT_PATH } from "@/routes/path";
+import { EXAMS_PATH, STUDENT_PATH } from "@/routes/path";
 import {
-  IActionProduct,
-  productDefaultValuesAction,
-  productValidation,
-  productValues,
+  IActionProduct
 } from "@/validation/product";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { Resolver, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "sonner";
 
 const ExamForm = ({ onSubmit }: { onSubmit: () => void }) => {
   const { openSidebar } = useOpenSidebarContext();
@@ -29,18 +20,9 @@ const ExamForm = ({ onSubmit }: { onSubmit: () => void }) => {
   const { data: productDetails, isLoading } = queries.GetProduct(id);
   const { mutate, isPending } = queries.ProductAction(id);
 
-  const { handleSubmit, control, reset } = useForm<IActionProduct>({
-    resolver: yupResolver(
-      productValidation
-    ) as unknown as Resolver<IActionProduct>,
-    defaultValues: productDefaultValuesAction,
-  });
+  const { handleSubmit, control } = useForm();
 
-  useEffect(() => {
-    if (productDetails) {
-      reset(productValues(productDetails as IUpdateProduct));
-    }
-  }, [productDetails, reset]);
+
 
   const submitHandler = (data: IActionProduct) => {
     localStorage.setItem("numberOfQuestions", data.numberOfQuestions);
@@ -57,7 +39,7 @@ const ExamForm = ({ onSubmit }: { onSubmit: () => void }) => {
     //     );
     //     queryClient.invalidateQueries({ queryKey: keys.getAllProduct._def });
     //     queryClient.invalidateQueries({ queryKey: keys.getProduct._def });
-    //     navigate(PRODUCT_PATH.PRODUCTS);
+    //     navigate(STUDENT_PATH.PRODUCTS);
     //      // Call the onSubmit prop to trigger the swap
     //   },
     // });
@@ -140,7 +122,7 @@ const ExamForm = ({ onSubmit }: { onSubmit: () => void }) => {
               type="button"
               variant="outline"
               className="w-full"
-              onClick={() => navigate(PRODUCT_PATH.PRODUCTS)}
+              onClick={() => navigate(EXAMS_PATH.EXAMS)}
             >
               رجوع
             </Button>

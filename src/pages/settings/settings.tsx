@@ -1,4 +1,4 @@
-import queries from "@/api/users/queries";
+import queries from "@/api/settings/queries";
 import PageTitle from "@/components/global/page-title";
 import TooltipButton from "@/components/global/tooltipButton";
 import Pencil from "@/components/icons/pencil";
@@ -11,7 +11,7 @@ import { SETTINGS_PATH } from "@/routes/path";
 import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
-  const { data, isLoading, isError } = queries.GetAllUser();
+  const { data, isLoading, isError } = queries.GetAllQuizzes();
   const navigate = useNavigate();
 
   const handleDelete = (id: number) => {};

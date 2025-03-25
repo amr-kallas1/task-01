@@ -1,15 +1,22 @@
 let API_ROUTES = {
-  PRODUCT: {
-    root: "posts",
-    GET_ALL_PRODUCTS: "",
-    GET_PRODUCT: "",
-    ADD_PRODUCT: "",
-    UPDATE_PRODUCT: "",
-    DELETE_PRODUCT: "",
-  },
-  USER: {
+  AUTH: {
     root: "users",
-    GET_ALL_USER: "",
+    login: "login",
+  },
+  STUDENT: {
+    root: "users",
+    GET_ALL_STUDENTS: "",
+    ADD_STUDENT: "",
+    UPDATE_STUDENT: (id: string) => id,
+    DELETE_STUDENT: (id: string) => id,
+  },
+  SETTINGS: {
+    root: "quizzes",
+    GET_ALL_QUIZZES: "",
+    ADD_QUIZZE: "",
+    GET_QUIZZE: (id: string) => id,
+    UPDATE_QUIZZE: (id: string) => id,
+    DELETE_QUIZZE: (id: string) => id,
   },
 };
 const controllersArr = Object.entries(API_ROUTES).map(

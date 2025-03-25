@@ -10,7 +10,7 @@ import {
   EXAMS_PAGES,
   HOME_PAGES,
   NOT_FOUND_PAGE,
-  PRODUCT_PAGES,
+  STUDENT_PAGES,
   SETTINGS_PAGES,
   USER_PAGES,
 } from "./elements";
@@ -18,7 +18,7 @@ import {
   AUTH_PATH,
   EXAMS_PATH,
   NOT_FOUND_PATH,
-  PRODUCT_PATH,
+  STUDENT_PATH,
   SETTINGS_PATH,
   USERS_PATH,
 } from "./path";
@@ -43,20 +43,16 @@ export default createBrowserRouter(
               <Route index element={<USER_PAGES.USER />} />
             </Route>
 
-            {/* Product Page */}
-            <Route path={PRODUCT_PATH.PRODUCTS}>
-              <Route index element={<PRODUCT_PAGES.PRODUCT />} />
+            {/* Student Page */}
+            <Route path={STUDENT_PATH.STUDENT}>
+              <Route index element={<STUDENT_PAGES.STUDENT />} />
               <Route
-                path={PRODUCT_PATH.ADD_PRODUCT}
-                element={<PRODUCT_PAGES.PRODUCT_ACTION />}
+                path={STUDENT_PATH.ADD_STUDENT}
+                element={<STUDENT_PAGES.STUDENT_ACTION />}
               />
               <Route
-                path={PRODUCT_PATH.EDIT_PRODUCT + "/:id"}
-                element={<PRODUCT_PAGES.PRODUCT_ACTION />}
-              />
-              <Route
-                path={PRODUCT_PATH.PRODUCT_DETAILS + "/:id"}
-                element={<PRODUCT_PAGES.PRODUCT_DETAILS />}
+                path={STUDENT_PATH.EDIT_STUDENT + "/:id"}
+                element={<STUDENT_PAGES.STUDENT_ACTION />}
               />
             </Route>
 
