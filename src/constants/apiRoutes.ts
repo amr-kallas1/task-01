@@ -7,6 +7,7 @@ let API_ROUTES = {
     root: "users",
     GET_ALL_STUDENTS: "",
     ADD_STUDENT: "",
+    GET_STUDENT: (id: string) => id,
     UPDATE_STUDENT: (id: string) => id,
     DELETE_STUDENT: (id: string) => id,
   },

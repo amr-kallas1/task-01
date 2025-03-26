@@ -3,15 +3,19 @@ export type IStudent = {
   email: string;
   password: string;
   role: string;
+  id: string;
+  status: string;
 };
 
 export type IGetAllStudent = {
-  status: "success";
-  doc: {
-    id: string;
-    status: string;
-  }[] &
-    IStudent;
+  data: IStudent[];
 };
 
-export type IActionStudent = IStudent;
+export type IGetStudent = {
+  data: IStudent;
+};
+
+export type IActionStudent = { id?: string } & Omit<
+  IStudent,
+  "id" | "role" | "status"
+>;

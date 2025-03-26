@@ -15,11 +15,11 @@ import { useOpenDeleteDialogContext } from "@/context/openDeleteDialog";
 interface DeleteDialogProps {
   className?: string;
   dialogKey: string;
-  mutateFn: UseMutateFunction<any, Error, number, unknown>;
+  mutateFn: UseMutateFunction<any, Error, string, unknown>;
   isPending: boolean;
   titleToast: string;
-  id: number | null;
-  setId: Dispatch<SetStateAction<number | null>>;
+  id: string | null;
+  setId: Dispatch<SetStateAction<string | null>>;
   invalidateQueryKey: readonly string[];
 }
 const DeleteDialog = ({
@@ -29,15 +29,16 @@ const DeleteDialog = ({
   dialogKey,
   mutateFn,
   isPending,
+  titleToast,
   invalidateQueryKey,
 }: DeleteDialogProps) => {
   const queryClient = useQueryClient();
   const { openDeleteDialog, setOpenDeleteDialog } =
     useOpenDeleteDialogContext();
   const submitHandler = () => {
-    mutateFn(id as number, {
+    mutateFn(id as string, {
       onSuccess: () => {
-        toast.success("the product has been deleted successfully");
+        toast.success(titleToast);
         queryClient.invalidateQueries({ queryKey: invalidateQueryKey });
         setId(null);
         setOpenDeleteDialog(false);
@@ -68,7 +69,7 @@ const DeleteDialog = ({
           <Trash2 size={16} />
         </div>
         <DialogTitle className=" text-gray-700 dark:text-green-500 md:text-[20px] text-center mt-20 w-full">
-          Are you sure you want to delete
+          هل أنت متأكد من أنك تريد الحذف
         </DialogTitle>
 
         <div className={cn("flex gap-3 items-center", className)}>
@@ -78,7 +79,7 @@ const DeleteDialog = ({
             className="basis-1/2 bg-red-500 hover:bg-red-500"
             onClick={submitHandler}
           >
-            Submit
+            تأكيد
           </Button>
           <DialogClose asChild>
             <Button
@@ -86,7 +87,7 @@ const DeleteDialog = ({
               variant="outline"
               className={cn("w-full basis-1/2")}
             >
-              Cancel
+              إلغاء
             </Button>
           </DialogClose>
         </div>

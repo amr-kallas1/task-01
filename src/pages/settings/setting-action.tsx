@@ -1,4 +1,5 @@
 import queries, { keys } from "@/api/settings/queries";
+import { IGetQuizze } from "@/api/settings/type";
 import PageTitle from "@/components/global/page-title";
 import RHFTextField from "@/components/hook-form/RHFTextField";
 import BreadCrumbs from "@/components/ui/breadcrumb";
@@ -9,6 +10,7 @@ import {
   IQuizzeForm,
   settingDefaultValues,
   settingValidation,
+  settingValues,
 } from "@/validation/setting";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useQueryClient } from "@tanstack/react-query";
@@ -21,16 +23,19 @@ const SettingAction = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { openSidebar } = useOpenSidebarContext();
+
+  const { mutate, isPending } = queries.QuizzeAction(id);
+  const { data: quizzeDetails, isLoading } = queries.GetQuizze(id);
+
   const { handleSubmit, control } = useForm({
     defaultValues: settingDefaultValues,
     resolver: yupResolver(settingValidation),
+    values: settingValues(quizzeDetails as IGetQuizze),
   });
-
-  const { mutate ,isPending} = queries.QuizzeAction(id);
 
   const submitHandler = (data: IQuizzeForm) => {
     const body = {
-      id,
+      id: id ? id : undefined,
       ...data,
     };
     mutate(body, {
@@ -72,14 +77,14 @@ const SettingAction = () => {
           }  py-6 border border-solid  rounded-md gap-4 flex flex-col`}
         >
           <RHFTextField
-            isLoading={false}
+            isLoading={isLoading}
             name="name"
             control={control}
             label="الاسم"
             placeholder="أدخل اسم الإعدادات"
           />
           <RHFTextField
-            isLoading={false}
+            isLoading={isLoading}
             name="numberOfAttempts"
             control={control}
             label="عدد الاحتمالات"
@@ -87,7 +92,7 @@ const SettingAction = () => {
             placeholder="أدخل عدد الاحتمالات"
           />
           <RHFTextField
-            isLoading={false}
+            isLoading={isLoading}
             name="duration"
             control={control}
             label="المدة الزمنية"

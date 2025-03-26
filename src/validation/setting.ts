@@ -1,4 +1,4 @@
-import { IActionQuizze } from "@/api/settings/type";
+import { IActionQuizze, IGetQuizze } from "@/api/settings/type";
 import {
   numberValidation,
   stringValidation,
@@ -11,6 +11,15 @@ export const settingDefaultValues = {
   name: "",
   duration: 0,
   numberOfAttempts: 0,
+};
+
+export const settingValues = (values: IGetQuizze) => {
+  if (values)
+    return {
+      name: values.data.name,
+      duration: values.data.duration,
+      numberOfAttempts: values.data.numberOfAttempts,
+    };
 };
 
 export const settingValidation = object().shape({

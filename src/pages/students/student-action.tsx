@@ -1,5 +1,5 @@
 import queries, { keys } from "@/api/student/queries";
-import { IUpdateProduct } from "@/api/student/type";
+import { IGetStudent } from "@/api/student/type";
 import PageTitle from "@/components/global/page-title";
 import RHFTextField from "@/components/hook-form/RHFTextField";
 import BreadCrumbs from "@/components/ui/breadcrumb";
@@ -7,14 +7,13 @@ import { Button } from "@/components/ui/button";
 import { useOpenSidebarContext } from "@/context/sidebarContext";
 import { STUDENT_PATH } from "@/routes/path";
 import {
-  IActionProduct,
-  productDefaultValuesAction,
-  productValidation,
-  productValues,
-} from "@/validation/product";
+  IStudentForm,
+  studentDefaultValues,
+  studentValidation,
+  studentValues,
+} from "@/validation/student";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
 import { Resolver, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
@@ -25,41 +24,31 @@ const StudentAction = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data: productDetails, isLoading } = queries.GetProduct(id);
-  // const { mutate, isPending } = queries.StudentAction(id);
+  const { data: studentDetails, isLoading } = queries.GetStudent(id);
+  console.log(studentDetails);
+  const { mutate, isPending } = queries.StudentAction(id);
 
-  const { handleSubmit, control, reset } = useForm<IActionProduct>({
+  const { handleSubmit, control } = useForm<IStudentForm>({
     resolver: yupResolver(
-      productValidation
-    ) as unknown as Resolver<IActionProduct>,
-    defaultValues: productDefaultValuesAction,
+      studentValidation
+    ) as unknown as Resolver<IStudentForm>,
+    defaultValues: studentDefaultValues,
+    values: studentValues(studentDetails as IGetStudent),
   });
 
-  useEffect(() => {
-    if (productDetails) {
-      reset(productValues(productDetails as IUpdateProduct));
-    }
-  }, [productDetails, reset]);
-
-  const submitHandler = (data: IActionProduct) => {
+  const submitHandler = (data: IStudentForm) => {
     const body = {
+      id: id ? id : undefined,
       ...data,
-      id: Number(id),
-      category: data.category.value,
     };
 
-    // mutate(body, {
-    // //   onSuccess: () => {
-    // //     toast.success(
-    // //       id
-    // //         ? "the product has been edited successfully"
-    // //         : "the product has been added successfully"
-    // //     );
-    // //     queryClient.invalidateQueries({ queryKey: keys.getAllProduct._def });
-    // //     queryClient.invalidateQueries({ queryKey: keys.getProduct._def });
-    // //     navigate(STUDENT_PATH.STUDENT);
-    // //   },
-    // // });
+    mutate(body, {
+      onSuccess: () => {
+        toast.success(id ? "تم تعديل الطالب بنجاح" : "تم إضافة الطالب بنجاح");
+        queryClient.invalidateQueries({ queryKey: keys.getAllStudents._def });
+        navigate(STUDENT_PATH.STUDENT);
+      },
+    });
   };
 
   return (
@@ -102,7 +91,6 @@ const StudentAction = () => {
             name="email"
             control={control}
             label="الايميل"
-            type="number"
             placeholder="ادخل الايميل"
           />
           <RHFTextField
@@ -121,7 +109,7 @@ const StudentAction = () => {
             >
               رجوع
             </Button>
-            <Button isLoading={false} className="w-full">
+            <Button isLoading={isPending} className="w-full">
               {id ? "تعديل الطالب" : "إضافة طالب"}
             </Button>
           </div>

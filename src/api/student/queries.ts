@@ -2,24 +2,24 @@ import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import API from "./api";
 
-export const keys = createQueryKeys("product", {
-  getAllProduct: () => ({
-    queryFn: API.getAllProducts,
+export const keys = createQueryKeys("students", {
+  getAllStudents: () => ({
+    queryFn: API.getAllStudents,
     queryKey: [""],
   }),
-  getProduct: (id: string) => ({
-    queryFn: () => API.getProduct(id),
+  getStudent: (id: string) => ({
+    queryFn: () => API.getStudent(id),
     queryKey: [id],
   }),
 });
 
 const queries = {
-  GetAllProduct: () => useQuery(keys.getAllProduct()),
-  GetProduct: (id: string) =>
-    useQuery({ ...keys.getProduct(id), enabled: !!id }),
-  ProductAction: (id: string) =>
-    useMutation({ mutationFn: id ? API.updateProduct : API.addProduct }),
-  DeleteProduct: () => useMutation({ mutationFn: API.deleteProduct }),
+  GetAllStudents: () => useQuery(keys.getAllStudents()),
+  GetStudent: (id: string) =>
+    useQuery({ ...keys.getStudent(id), enabled: !!id }),
+  StudentAction: (id: string) =>
+    useMutation({ mutationFn: id ? API.updateStudent : API.addStudent }),
+  DeleteStudent: () => useMutation({ mutationFn: API.deleteStudent }),
 };
 
 export default queries;

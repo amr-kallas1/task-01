@@ -21,8 +21,8 @@ const API = {
   },
   updateQuizze: async (body: IActionQuizze) => {
     const { data } = await axios.patch(
-      API_ROUTES.SETTINGS.UPDATE_QUIZZE(body.id),
-      body
+      API_ROUTES.SETTINGS.UPDATE_QUIZZE(body.id ?? ""),
+      { ...body, id: undefined }
     );
     return data;
   },

@@ -5,6 +5,7 @@ import TooltipButton from "@/components/global/tooltipButton";
 import Pencil from "@/components/icons/pencil";
 import Trash from "@/components/icons/trash";
 import Table from "@/components/table/table";
+import { Badge } from "@/components/ui/badge";
 import BreadCrumbs from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { TableCell, TableRow } from "@/components/ui/table";
@@ -17,17 +18,20 @@ const columns = [
   { title: "#" },
   { title: "اسم الطالب" },
   { title: "الايميل" },
+  { title: "المنصب" },
+  { title: "الحالة" },
   { title: "الإجراءات", className: "text-center" },
 ];
 
 const Students = () => {
   const navigate = useNavigate();
-  const [id, setId] = useState<number | null>(null);
+  const [id, setId] = useState<string | null>(null);
   const { setOpenDeleteDialog } = useOpenDeleteDialogContext();
-  const { data, isLoading, isError } = queries.GetAllProduct();
-  const { mutate, isPending } = queries.DeleteProduct();
+  const { data, isLoading, isError } = queries.GetAllStudents();
+  const { mutate, isPending } = queries.DeleteStudent();
 
-  const handleDelete = (id: number) => {
+
+  const handleDelete = (id: string) => {
     setId(id);
     setOpenDeleteDialog(true);
   };
@@ -54,13 +58,21 @@ const Students = () => {
         isLoading={isLoading}
         WithPagination
         totalPages={3}
-        dataLength={data?.length}
+        dataLength={data?.data?.length}
       >
-        {data?.map(({ id, title }, index) => (
+        {data?.data?.map(({ email, name, role, id, status }, index) => (
           <TableRow className={"p-6 "} key={id}>
             <TableCell className="font-medium ">{index + 1}</TableCell>
-            <TableCell>{title}</TableCell>
-            <TableCell>{"name"} </TableCell>
+            <TableCell>{name}</TableCell>
+            <TableCell>{email} </TableCell>
+            <TableCell>{role} </TableCell>
+            <TableCell>
+              <Badge
+                variant={status == "active" ? "success" : "red"}
+                title={status}
+              />{" "}
+            </TableCell>
+
             <TableCell className={`flex justify-center`}>
               <TooltipButton
                 onClick={() => navigate(STUDENT_PATH.EDIT_STUDENT + "/" + id)}
@@ -84,8 +96,8 @@ const Students = () => {
         setId={setId}
         isPending={isPending}
         dialogKey="deleteProduct"
-        titleToast="product.product"
-        invalidateQueryKey={keys.getAllProduct._def}
+        titleToast="تم حذف الطالب بنجاح"
+        invalidateQueryKey={keys.getAllStudents._def}
       />
     </>
   );

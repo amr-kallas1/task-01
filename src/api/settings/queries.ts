@@ -15,11 +15,13 @@ export const keys = createQueryKeys("Quizzes", {
 
 const queries = {
   GetAllQuizzes: () => useQuery(keys.getAllQuizzes()),
-  GetQuizze: (id: string) => useQuery(keys.getQuizze(id)),
+  GetQuizze: (id: string) => useQuery({ ...keys.getQuizze(id), enabled: !!id }),
   QuizzeAction: (id: string) =>
     useMutation({ mutationFn: id ? API.updateQuizze : API.addQuizze }),
-  DeleteQuizze: (id: string) =>
-    useMutation({ mutationFn: () => API.deleteQuizze(id) }),
+  DeleteQuizze: () =>
+    useMutation({
+      mutationFn: API.deleteQuizze,
+    }),
 };
 
 export default queries;
