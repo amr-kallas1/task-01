@@ -17,8 +17,8 @@ const ExamForm = ({ onSubmit }: { onSubmit: () => void }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data: productDetails, isLoading } = queries.GetProduct(id);
-  const { mutate, isPending } = queries.ProductAction(id);
+  const { data: productDetails, isLoading } = queries.GetStudent(id);
+  const { mutate, isPending } = queries.StudentAction(id);
 
   const { handleSubmit, control } = useForm();
 
