@@ -1,11 +1,10 @@
 import queries, { keys } from "@/api/student/queries";
-import { IUpdateProduct } from "@/api/student/type";
 import PageTitle from "@/components/global/page-title";
 import RHFTextField from "@/components/hook-form/RHFTextField";
 import BreadCrumbs from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { useOpenSidebarContext } from "@/context/sidebarContext";
-import { PRODUCT_PATH } from "@/routes/path";
+import { STUDENT_PATH } from "@/routes/path";
 import {
   IActionProduct,
   productDefaultValuesAction,
@@ -25,21 +24,11 @@ const ProductAction = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data: productDetails, isLoading } = queries.GetProduct(id);
-  const { mutate, isPending } = queries.ProductAction(id);
+  const { data: productDetails, isLoading } = queries.GetStudent(id);
+  const { mutate, isPending } = queries.StudentAction(id);
 
-  const { handleSubmit, control, reset, setValue } = useForm<IActionProduct>({
-    resolver: yupResolver(
-      productValidation
-    ) as unknown as Resolver<IActionProduct>,
-    defaultValues: productDefaultValuesAction,
-  });
+  const { handleSubmit, control, reset, setValue } = useForm();
 
-  useEffect(() => {
-    if (productDetails) {
-      reset(productValues(productDetails as IUpdateProduct));
-    }
-  }, [productDetails, reset]);
 
   const submitHandler = (data: IActionProduct) => {
     const body = {
@@ -48,18 +37,18 @@ const ProductAction = () => {
       category: data.category.value,
     };
 
-    mutate(body, {
-      onSuccess: () => {
-        toast.success(
-          id
-            ? "the product has been edited successfully"
-            : "the product has been added successfully"
-        );
-        queryClient.invalidateQueries({ queryKey: keys.getAllProduct._def });
-        queryClient.invalidateQueries({ queryKey: keys.getProduct._def });
-        navigate(PRODUCT_PATH.PRODUCTS);
-      },
-    });
+    // mutate(body, {
+    //   onSuccess: () => {
+    //     toast.success(
+    //       id
+    //         ? "the product has been edited successfully"
+    //         : "the product has been added successfully"
+    //     );
+    //     queryClient.invalidateQueries({ queryKey: keys.getAllProduct._def });
+    //     queryClient.invalidateQueries({ queryKey: keys.getProduct._def });
+    //     navigate(STUDENT_PATH.PRODUCTS);
+    //   },
+    // });
   };
 
   return (
@@ -67,7 +56,7 @@ const ProductAction = () => {
       <div className="flex flex-col mb-6 border-b border-gray-200">
         <BreadCrumbs
           data={[
-            { label: "الموظفين", link: PRODUCT_PATH.PRODUCTS },
+            { label: "الموظفين", link: STUDENT_PATH.PRODUCTS },
             {
               label: `${id ? "تعديل الموظف" : "إضافة موظف"}`,
               link: "",
@@ -118,7 +107,7 @@ const ProductAction = () => {
               type="button"
               variant="outline"
               className="w-full"
-              onClick={() => navigate(PRODUCT_PATH.PRODUCTS)}
+              onClick={() => navigate(STUDENT_PATH.PRODUCTS)}
             >
               رجوع
             </Button>

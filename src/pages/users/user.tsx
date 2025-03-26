@@ -8,7 +8,7 @@ import Table from "@/components/table/table";
 import BreadCrumbs from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { TableCell, TableRow } from "@/components/ui/table";
-import { PRODUCT_PATH, USERS_PATH } from "@/routes/path";
+import { STUDENT_PATH, USERS_PATH } from "@/routes/path";
 import { useNavigate } from "react-router-dom";
 
 const columns = [
@@ -33,7 +33,7 @@ const User = () => {
           <Button
             buttonContainerClass="gap-1"
             variant="add"
-            onClick={() => navigate(PRODUCT_PATH.ADD_PRODUCT)}
+            onClick={() => navigate(STUDENT_PATH.ADD_STUDENT)}
           >
             إضافة موظف
           </Button>
@@ -57,14 +57,14 @@ const User = () => {
             <TableCell className={`flex justify-center`}>
               <TooltipButton
                 onClick={() =>
-                  navigate(PRODUCT_PATH.PRODUCT_DETAILS + "/" + id)
+                  navigate(STUDENT_PATH.EDIT_STUDENT + "/" + id)
                 }
                 icon={<Eye />}
                 title="التفاصيل"
                 className="border-none items-start p-2 rounded-full hover:bg-accent"
               />
               <TooltipButton
-                onClick={() => navigate(PRODUCT_PATH.EDIT_PRODUCT + "/" + id)}
+                onClick={() => navigate(STUDENT_PATH.EDIT_STUDENT + "/" + id)}
                 icon={<Pencil />}
                 title="تعديل المعلومات"
                 className="border-none items-start p-2 rounded-full hover:bg-accent"
